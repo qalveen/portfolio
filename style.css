@@ -1,6 +1,7 @@
 body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
   font: 100%/1.5 system-ui;
+  margin-inline: max(1em, (100% - 100ch) / 2);
+  max-width: 100ch;
+  padding: 1em;
+  
 }
