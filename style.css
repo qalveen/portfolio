@@ -5,6 +5,17 @@ body {
   background-color: #fff;
   color: #222;
 }
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 nav ul,
 nav li {
