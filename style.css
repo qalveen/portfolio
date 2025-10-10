@@ -10,6 +10,7 @@ body {
   background-color: #fff;
   color: #222;
 }
+/* ---------- Navigation ---------- */
 
 nav ul {
   list-style: none;
@@ -60,6 +61,7 @@ img {
 section {
   margin-block: 1.5em;
 }
+/* ---------- Contact Form ---------- */
 
 form {
   display: grid;
@@ -108,6 +110,8 @@ button:hover {
   border-color: var(--color-accent);
 }
 
+/* ---------- Projects ---------- */
+
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -150,3 +154,66 @@ h1 {
   box-shadow: 0 2px 6px oklch(80% 3% 200 / 0.3);
 }
 
+/* ---------- RESUME PAGE ---------- */
+.resume {
+  display: block;
+  background: white;
+  padding: 2em;
+  border-radius: 1em;
+  box-shadow: 0 4px 8px oklch(80% 3% 200 / 0.25);
+  margin-block: 2em;
+}
+
+.resume h1 {
+  font-size: 3rem;
+  margin-bottom: 0.25em;
+}
+
+.resume h2 {
+  margin-top: 2em;
+  color: var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.2em;
+}
+
+.resume h3 {
+  margin-top: 1em;
+  font-size: 1.1rem;
+}
+
+.resume p {
+  margin-block: 0.3em;
+  line-height: 1.6;
+}
+
+.resume section {
+  margin-bottom: 2em;
+}
+
+.resume ul {
+  margin-top: 0.5em;
+  padding-left: 1.5em;
+  line-height: 1.5;
+}
+
+.resume li {
+  margin-bottom: 0.25em;
+}
+
+.resume a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.resume a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- RESPONSIVE TWEAKS ---------- */
+@media (min-width: 800px) {
+  .resume {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2em;
+  }
+}
