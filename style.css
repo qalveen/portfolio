@@ -1,5 +1,5 @@
 html {
-  --color-accent: oklch(65% 0.25 145);
+  --color-accent: oklch(55% 0.3 145);
   accent-color: var(--color-accent);
 }
 
@@ -15,7 +15,6 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -26,11 +25,8 @@ nav li {
 }
 
 nav {
-  padding: 0.5em;
   border-bottom: 1px solid oklch(80% 3% 200);
-  margin-bottom: 1em;
-  background-color: #f0f0f0;
-  border-radius: 0.5em 0.5em 0 0;
+  margin-bottom: 2em;
 }
 
 nav a {
@@ -40,8 +36,8 @@ nav a {
   color: inherit;
   font-weight: 500;
   padding: 0.5em;
-  transition: border-bottom 0.2s ease, color 0.2s ease;
   border-bottom: 0.4em solid transparent;
+  transition: border-bottom 0.2s ease, color 0.2s ease;
 }
 
 nav a.current {
