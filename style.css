@@ -1,7 +1,52 @@
 body {
   font: 100%/1.5 system-ui;
-  margin-inline: max(1em, (100% - 100ch) / 2);
   max-width: 100ch;
-  padding: 1em;
-  
+  margin-inline: max(1em, (100% - 100ch) / 2);
+  background-color: #fff;
+  color: #222;
+}
+
+nav ul,
+nav li {
+  display: contents;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  max-width: 100ch;
+  margin-inline: auto;
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 0.5em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover {
+  background-color: #ddd;
+}
+
+nav a.current {
+  background-color: #ccc;
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5em;
+}
+
+section {
+  margin-block: 1.5em;
 }
