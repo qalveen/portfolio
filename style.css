@@ -64,14 +64,16 @@ section {
 form {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 1em;
+  gap: 0.5em 1em; /* smaller gap: row gap = 0.5em, column gap = 1em */
   font: inherit;
+  margin-top: 1em;
 }
 
 label {
   display: grid;
   grid-template-columns: subgrid;
   grid-column: 1 / -1;
+  align-items: center;
 }
 
 label > span {
@@ -86,13 +88,19 @@ button {
   box-sizing: border-box;
 }
 
+input,
+textarea {
+  padding: 0.4em;
+}
+
 button {
   grid-column: 1 / -1;
-  background: oklch(95% 0.02 200);
-  border: 1px solid oklch(80% 3% 200);
-  padding: 0.75em;
+  background: oklch(55% 0.3 145 / 0.1);
+  border: 1px solid oklch(55% 0.3 145 / 0.3);
+  padding: 0.6em;
   cursor: pointer;
-  transition: background 0.2s ease;
+  border-radius: 0.3em;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 button:hover {
@@ -100,4 +108,3 @@ button:hover {
   color: white;
   border-color: var(--color-accent);
 }
-
