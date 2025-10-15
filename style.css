@@ -217,3 +217,44 @@ h1 {
     gap: 2em;
   }
 }
+
+/* ---------- DARK MODE SUPPORT ---------- */
+
+/* Let the browser switch automatically between light and dark */
+html {
+  color-scheme: light dark;
+  background-color: canvas;
+  color: canvastext;
+}
+
+/* Adaptive border color for navigation */
+nav {
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Improve hover color for dark mode */
+nav a:hover {
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  color: var(--color-accent);
+}
+
+/* ---------- THEME SWITCHER ---------- */
+
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
+}
+
+.color-scheme select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Optional smooth transitions when switching themes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
