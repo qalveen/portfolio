@@ -1,57 +1,66 @@
+// Lab 3 — Step 1: boot + helper
 console.log("IT’S ALIVE!");
 
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-/* ---------- STEP 3: AUTOMATIC NAVIGATION MENU ---------- */
-let pages = [
-  { url: '', title: 'Home' },
-  { url: 'projects/', title: 'Projects' },
-  { url: 'contact/', title: 'Contact' },
-  { url: 'resume/', title: 'Resume' },
-  { url: 'https://github.com/qalveen', title: 'GitHub' },
+// ──────────────────────────────────────────────────────────────────────────────
+// Step 3: Automatic navigation menu (data + build)
+// ──────────────────────────────────────────────────────────────────────────────
+const pages = [
+  { url: "", title: "Home" },
+  { url: "projects/", title: "Projects" },
+  { url: "contact/", title: "Contact" },
+  { url: "resume/", title: "CV" }, // or "Resume"
+  { url: "https://github.com/qalveen", title: "GitHub" },
 ];
 
-let nav = document.createElement('nav');
+// Correct base for local dev vs GitHub Pages
+const BASE_PATH =
+  location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? "/"
+    : "/portfolio/"; // ← your repo name
+
+// Create <nav> and insert at the top of <body>
+const nav = document.createElement("nav");
 document.body.prepend(nav);
 
-const BASE_PATH =
-  location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-    ? '/'
-    : '/portfolio/';
-
-for (let p of pages) {
+// Build links
+for (const p of pages) {
   let url = p.url;
-  let title = p.title;
+  if (!url.startsWith("http")) url = BASE_PATH + url;
 
-  if (!url.startsWith('http')) {
-    url = BASE_PATH + url;
-  }
-
-  let a = document.createElement('a');
+  const a = document.createElement("a");
   a.href = url;
-  a.textContent = title;
+  a.textContent = p.title;
 
-  // Highlight the current page
-  a.classList.toggle(
-    'current',
-    a.host === location.host && a.pathname === location.pathname
-  );
-
-  // External links (GitHub)
-  a.toggleAttribute('target', a.host !== location.host);
+  // External links open in new tab
+  if (a.host !== location.host) a.target = "_blank";
 
   nav.append(a);
 }
 
-/* ---------- STEP 4: DARK MODE SWITCHER ---------- */
+// ──────────────────────────────────────────────────────────────────────────────
+/* Step 2: Automatic current page link (EXACTLY as the lab requires)
+   - Use $$ to select nav links
+   - Use Array.find() to match host + pathname
+   - Add 'current' class via classList.add (with optional chaining) */
+const navLinks = $$("nav a");
+const currentLink = navLinks.find(
+  (a) => a.host === location.host && a.pathname === location.pathname
+);
+currentLink?.classList.add("current");
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Step 4: Dark-mode switch (adds the control and sets `color-scheme`)
+// ──────────────────────────────────────────────────────────────────────────────
 document.body.insertAdjacentHTML(
-  'afterbegin',
+  "afterbegin",
   `
   <label class="color-scheme">
     Theme:
-    <select>
+    <select id="theme">
       <option value="light dark">Automatic</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
@@ -60,16 +69,21 @@ document.body.insertAdjacentHTML(
 `
 );
 
-let select = document.querySelector('.color-scheme select');
+const select = document.getElementById("theme");
 
-function setColorScheme(value) {
-  document.documentElement.style.setProperty('color-scheme', value);
+// Set from storage (or default to Automatic)
+const saved = localStorage.colorScheme ?? "light dark";
+applyColorScheme(saved);
+select.value = saved;
+
+// Persist + apply on change
+select.addEventListener("input", (e) => {
+  const value = e.target.value;
   localStorage.colorScheme = value;
-  select.value = value;
-}
+  applyColorScheme(value);
+});
 
-if ('colorScheme' in localStorage) {
-  setColorScheme(localStorage.colorScheme);
+// Actually set the CSS color-scheme on <html>
+function applyColorScheme(value) {
+  document.documentElement.style.setProperty("color-scheme", value);
 }
-
-select.addEventListener('input', (e) => setColorScheme(e.target.value));
