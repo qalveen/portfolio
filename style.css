@@ -11,56 +11,36 @@ body {
   color: #222;
 }
 /* ---------- Navigation ---------- */
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-nav li {
-  flex: 1;
-}
-
 nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
   border-bottom: 1px solid oklch(80% 3% 200);
+  padding: 0.8em 0;
   margin-bottom: 2em;
+  background: canvas;
 }
 
 nav a {
-  display: block;
-  text-align: center;
   text-decoration: none;
   color: inherit;
   font-weight: 500;
-  padding: 0.5em;
-  border-bottom: 0.4em solid transparent;
+  padding-bottom: 0.4em;
+  border-bottom: 0.25em solid transparent;
   transition: border-bottom 0.2s ease, color 0.2s ease;
 }
 
 nav a.current {
-  border-bottom: 0.4em solid oklch(85% 3% 200);
-  padding-bottom: 0.1em;
+  border-bottom-color: oklch(85% 3% 200);
   font-weight: bold;
 }
 
 nav a:hover {
-  border-bottom: 0.4em solid var(--color-accent);
+  border-bottom-color: var(--color-accent);
   color: var(--color-accent);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.5em;
-}
-
-section {
-  margin-block: 1.5em;
-}
 /* ---------- Contact Form ---------- */
 
 form {
@@ -219,42 +199,44 @@ h1 {
 }
 
 /* ---------- DARK MODE SUPPORT ---------- */
-
-/* Let the browser switch automatically between light and dark */
 html {
   color-scheme: light dark;
   background-color: canvas;
   color: canvastext;
 }
 
-/* Adaptive border color for navigation */
+/* Adaptive border for both modes */
 nav {
   --border-color: oklch(50% 10% 200 / 40%);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom-color: var(--border-color);
 }
 
-/* Improve hover color for dark mode */
+/* Hover color that adapts to theme */
 nav a:hover {
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-  color: var(--color-accent);
 }
 
-/* ---------- THEME SWITCHER ---------- */
 
+/* ---------- THEME SWITCHER ---------- */
 .color-scheme {
   position: absolute;
-  top: 1rem;
+  top: 0.5rem;
   right: 1rem;
-  font-size: 80%;
+  font-size: 85%;
   font-family: inherit;
+  color: canvastext;
 }
 
 .color-scheme select {
   font-family: inherit;
   font-size: inherit;
+  border-radius: 0.3em;
+  border: 1px solid oklch(50% 10% 200 / 40%);
+  background: canvas;
+  color: canvastext;
 }
 
-/* Optional smooth transitions when switching themes */
+/* Smooth transitions */
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
