@@ -1,36 +1,36 @@
-/* ---------- BASE THEME VARIABLES ---------- */
-html {
+/* ---------- COLOR VARIABLES ---------- */
+:root {
   color-scheme: light dark;
+
+  /* Light theme defaults */
   --accent-color: oklch(65% 0.25 145);
-  --border-color: oklch(80% 3% 200);
-  --nav-bg: white;
-  --body-bg: white;
+  --border-color: oklch(80% 3% 200 / 70%);
+  --bg-color: white;
   --text-color: black;
+  --nav-bg: white;
 }
 
-/* ---------- DARK MODE (auto + manual switch) ---------- */
-@media (prefers-color-scheme: dark) {
-  html {
-    --accent-color: oklch(75% 0.25 145);
-    --border-color: oklch(40% 5% 200 / 50%);
-    --nav-bg: oklch(20% 0.02 200);
-    --body-bg: oklch(15% 0.02 200);
-    --text-color: oklch(95% 0 0);
-  }
+/* ---------- DARK THEME OVERRIDES ---------- */
+html[data-theme='dark'] {
+  --accent-color: oklch(75% 0.25 145);
+  --border-color: oklch(35% 3% 200 / 50%);
+  --bg-color: oklch(15% 0.02 200);
+  --text-color: oklch(95% 0 0);
+  --nav-bg: oklch(10% 0.02 200);
 }
 
 /* ---------- BODY ---------- */
 body {
-  background-color: var(--body-bg);
+  background: var(--bg-color);
   color: var(--text-color);
   font-family: system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;
-  padding: 0;
-  transition: background-color 0.4s ease, color 0.4s ease;
   max-width: 100ch;
   margin-inline: auto;
+  padding-bottom: 3em;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ---------- NAVIGATION ---------- */
@@ -39,59 +39,66 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 3em;
-  background-color: var(--nav-bg);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border-color);
   padding: 1em 0;
-  border-bottom: 2px solid var(--border-color);
-  margin-bottom: 2em;
   width: 100%;
-  font-size: 1.15rem;
-  font-weight: 500;
 }
 
 nav a {
   text-decoration: none;
   color: var(--text-color);
-  font-weight: 500;
-  padding: 0.4em 0.6em;
-  border-bottom: 0.25em solid transparent;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.3em;
+  transition: color 0.25s ease;
 }
 
-nav a:hover {
-  color: var(--accent-color);
-  border-bottom-color: var(--accent-color);
-}
-
-nav a.current {
-  color: var(--accent-color);
-  border-bottom-color: var(--accent-color);
-  font-weight: 700;
-}
-
-/* ---------- THEME SWITCHER ---------- */
-.color-scheme {
+/* underline effect */
+nav a::after {
+  content: "";
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.2em;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  background: var(--accent-color);
+}
+
+nav a.current::after {
+  transform: scaleX(0.5);
+  background: var(--border-color);
+}
+
+/* ---------- THEME SWITCH ---------- */
+.color-scheme {
+  position: fixed;
+  top: 0.8em;
+  right: 1em;
   font-size: 0.9rem;
   color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--nav-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.4em;
+  padding: 0.2em 0.6em;
 }
 
 .color-scheme select {
-  font-family: inherit;
   background: var(--nav-bg);
   color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 0.3em;
-  padding: 0.2em 0.4em;
-  font-size: 0.9rem;
-}
-
-/* ---------- IMAGES ---------- */
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.5em;
+  border: none;
+  font: inherit;
 }
 
 /* ---------- HEADINGS ---------- */
@@ -103,16 +110,14 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3rem;
   font-weight: 800;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  text-align: left;
+  margin-top: 1em;
 }
 
 /* ---------- CONTACT FORM ---------- */
 form {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 0.4em 1em;
+  gap: 0.8em 1em;
   font: inherit;
   margin-top: 0.5em;
   align-items: center;
@@ -131,8 +136,11 @@ input,
 textarea {
   font: inherit;
   width: 100%;
-  box-sizing: border-box;
-  padding: 0.4em;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.3em;
+  padding: 0.5em;
 }
 
 textarea {
@@ -142,21 +150,20 @@ textarea {
 button {
   grid-column: 1 / -1;
   font: inherit;
-  background: oklch(55% 0.3 145 / 0.1);
-  border: 1px solid oklch(55% 0.3 145 / 0.4);
-  padding: 0.5em;
+  background: var(--border-color);
+  border: none;
+  padding: 0.6em;
   cursor: pointer;
   border-radius: 0.3em;
-  transition: background 0.2s ease, color 0.2s ease;
+  color: var(--text-color);
 }
 
 button:hover {
   background: var(--accent-color);
   color: white;
-  border-color: var(--accent-color);
 }
 
-/* ---------- PROJECTS GRID ---------- */
+/* ---------- PROJECTS ---------- */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -164,180 +171,31 @@ button:hover {
   margin-block: 2em;
 }
 
-.projects > article {
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
-  margin: 0;
-  gap: 0.5em;
-}
-
-.projects h2 {
-  margin: 0;
-}
-
 .projects article {
-  padding: 1em;
   border: 1px solid var(--border-color);
   border-radius: 0.5em;
-  background-color: oklch(98% 0.02 200);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.projects article:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 2px 6px oklch(80% 3% 200 / 0.3);
-}
-
-/* ---------- TRANSITIONS ---------- */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* ---------- Contact Form ---------- */
-
-form {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.4em 1em; /* smaller row & column gap */
-  font: inherit;
-  margin-top: 0.5em;
-  align-items: center;
-}
-
-label {
-  display: contents; /* makes label text + input share the same row */
-}
-
-label span {
-  justify-self: end;
-  font-weight: 500;
-}
-
-input,
-textarea {
-  font: inherit;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.4em;
-}
-
-textarea {
-  resize: vertical;
-}
-
-button {
-  grid-column: 1 / -1;
-  font: inherit;
-  background: oklch(55% 0.3 145 / 0.1);
-  border: 1px solid oklch(55% 0.3 145 / 0.4);
-  padding: 0.5em;
-  cursor: pointer;
-  border-radius: 0.3em;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-button:hover {
-  background: var(--color-accent);
-  color: white;
-  border-color: var(--color-accent);
-}
-
-/* ---------- Projects ---------- */
-
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  gap: 1em;
-  margin-block: 2em;
-}
-
-.projects > article {
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
-  margin: 0;
-  gap: 0.5em;
-}
-
-.projects h2 {
-  margin: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.1;
-  text-wrap: balance;
-}
-
-h1 {
-  font-size: 400%;
-  margin-bottom: 0.5em;
-}
-
-.projects article {
+  background-color: var(--bg-color);
   padding: 1em;
-  border: 1px solid oklch(85% 3% 200 / 0.5);
-  border-radius: 0.5em;
-  background-color: oklch(98% 0.02 200);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .projects article:hover {
   transform: translateY(-3px);
-  box-shadow: 0 2px 6px oklch(80% 3% 200 / 0.3);
+  box-shadow: 0 2px 6px var(--border-color);
 }
 
 /* ---------- RESUME PAGE ---------- */
 .resume {
-  display: block;
-  background: white;
   padding: 2em;
   border-radius: 1em;
-  box-shadow: 0 4px 8px oklch(80% 3% 200 / 0.25);
+  box-shadow: 0 4px 8px var(--border-color);
   margin-block: 2em;
-}
-
-.resume h1 {
-  font-size: 3rem;
-  margin-bottom: 0.25em;
+  background: var(--bg-color);
 }
 
 .resume h2 {
   margin-top: 2em;
-  color: var(--color-accent);
-  border-bottom: 2px solid var(--color-accent);
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
   padding-bottom: 0.2em;
-}
-
-.resume h3 {
-  margin-top: 1em;
-  font-size: 1.1rem;
-}
-
-.resume p {
-  margin-block: 0.3em;
-  line-height: 1.6;
-}
-
-.resume section {
-  margin-bottom: 2em;
-}
-
-.resume ul {
-  margin-top: 0.5em;
-  padding-left: 1.5em;
-  line-height: 1.5;
-}
-
-.resume li {
-  margin-bottom: 0.25em;
-}
-
-.resume a {
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.resume a:hover {
-  text-decoration: underline;
 }
