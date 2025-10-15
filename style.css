@@ -1,4 +1,4 @@
-/* ---------- BASE VARIABLES ---------- */
+/* ---------- BASE THEME VARIABLES ---------- */
 html {
   color-scheme: light dark;
   --accent-color: oklch(65% 0.25 145);
@@ -8,11 +8,11 @@ html {
   --text-color: black;
 }
 
-/* ---------- DARK MODE VARIABLES ---------- */
+/* ---------- DARK MODE (auto + manual switch) ---------- */
 @media (prefers-color-scheme: dark) {
   html {
     --accent-color: oklch(75% 0.25 145);
-    --border-color: oklch(60% 5% 200 / 40%);
+    --border-color: oklch(40% 5% 200 / 50%);
     --nav-bg: oklch(20% 0.02 200);
     --body-bg: oklch(15% 0.02 200);
     --text-color: oklch(95% 0 0);
@@ -40,7 +40,7 @@ nav {
   align-items: center;
   gap: 3em;
   background-color: var(--nav-bg);
-  padding: 1.2em 0;
+  padding: 1em 0;
   border-bottom: 2px solid var(--border-color);
   margin-bottom: 2em;
   width: 100%;
@@ -95,6 +95,11 @@ img {
 }
 
 /* ---------- HEADINGS ---------- */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
 h1 {
   font-size: 3rem;
   font-weight: 800;
@@ -103,32 +108,91 @@ h1 {
   text-align: left;
 }
 
+/* ---------- CONTACT FORM ---------- */
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.4em 1em;
+  font: inherit;
+  margin-top: 0.5em;
+  align-items: center;
+}
+
+label {
+  display: contents;
+}
+
+label span {
+  justify-self: end;
+  font-weight: 500;
+}
+
+input,
+textarea {
+  font: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.4em;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  grid-column: 1 / -1;
+  font: inherit;
+  background: oklch(55% 0.3 145 / 0.1);
+  border: 1px solid oklch(55% 0.3 145 / 0.4);
+  padding: 0.5em;
+  cursor: pointer;
+  border-radius: 0.3em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
 /* ---------- PROJECTS GRID ---------- */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
-  gap: 1.5em;
-  margin: 2em 0;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  margin-block: 2em;
+}
+
+.projects > article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  margin: 0;
+  gap: 0.5em;
+}
+
+.projects h2 {
+  margin: 0;
 }
 
 .projects article {
-  background: var(--body-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 0.6em;
   padding: 1em;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5em;
+  background-color: oklch(98% 0.02 200);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .projects article:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 10px oklch(70% 5% 200 / 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 2px 6px oklch(80% 3% 200 / 0.3);
 }
 
-/* ---------- SMOOTH TRANSITIONS ---------- */
+/* ---------- TRANSITIONS ---------- */
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
-
 
 /* ---------- Contact Form ---------- */
 
