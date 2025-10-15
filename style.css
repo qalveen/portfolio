@@ -1,46 +1,132 @@
+/* ---------- BASE VARIABLES ---------- */
 html {
-  --color-accent: oklch(55% 0.3 145);
-  accent-color: var(--color-accent);
+  color-scheme: light dark;
+  --accent-color: oklch(65% 0.25 145);
+  --border-color: oklch(80% 3% 200);
+  --nav-bg: white;
+  --body-bg: white;
+  --text-color: black;
 }
 
-body {
-  font: 100%/1.5 system-ui;
-  max-width: 100ch;
-  margin-inline: max(1em, (100% - 100ch) / 2);
-  background-color: #fff;
-  color: #222;
+/* ---------- DARK MODE VARIABLES ---------- */
+@media (prefers-color-scheme: dark) {
+  html {
+    --accent-color: oklch(75% 0.25 145);
+    --border-color: oklch(60% 5% 200 / 40%);
+    --nav-bg: oklch(20% 0.02 200);
+    --body-bg: oklch(15% 0.02 200);
+    --text-color: oklch(95% 0 0);
+  }
 }
-/* ---------- Navigation ---------- */
+
+/* ---------- BODY ---------- */
+body {
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  max-width: 100ch;
+  margin-inline: auto;
+}
+
+/* ---------- NAVIGATION ---------- */
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: 3em;
   background-color: var(--nav-bg);
-  padding: 1em 0;
+  padding: 1.2em 0;
   border-bottom: 2px solid var(--border-color);
   margin-bottom: 2em;
   width: 100%;
+  font-size: 1.15rem;
+  font-weight: 500;
 }
 
 nav a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
-  font-size: 1.1rem;
-  padding: 0.5em 0.8em;
+  padding: 0.4em 0.6em;
   border-bottom: 0.25em solid transparent;
-  transition: all 0.25s ease;
-}
-
-nav a.current {
-  border-bottom-color: var(--accent-color);
-  font-weight: 700;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 nav a:hover {
   color: var(--accent-color);
   border-bottom-color: var(--accent-color);
+}
+
+nav a.current {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* ---------- THEME SWITCHER ---------- */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.color-scheme select {
+  font-family: inherit;
+  background: var(--nav-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.3em;
+  padding: 0.2em 0.4em;
+  font-size: 0.9rem;
+}
+
+/* ---------- IMAGES ---------- */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5em;
+}
+
+/* ---------- HEADINGS ---------- */
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+/* ---------- PROJECTS GRID ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+  gap: 1.5em;
+  margin: 2em 0;
+}
+
+.projects article {
+  background: var(--body-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.6em;
+  padding: 1em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px oklch(70% 5% 200 / 0.25);
+}
+
+/* ---------- SMOOTH TRANSITIONS ---------- */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 
@@ -190,80 +276,4 @@ h1 {
 
 .resume a:hover {
   text-decoration: underline;
-}
-
-/* ---------- RESPONSIVE TWEAKS ---------- */
-@media (min-width: 800px) {
-  .resume {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 2em;
-  }
-}
-
-/* ---------- DARK MODE SUPPORT ---------- */
-html {
-  color-scheme: light dark;
-  background-color: canvas;
-  color: canvastext;
-}
-
-/* Adaptive border for both modes */
-nav {
-  --border-color: oklch(50% 10% 200 / 40%);
-  border-bottom-color: var(--border-color);
-}
-
-/* Hover color that adapts to theme */
-nav a:hover {
-  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-}
-
-
-/* ---------- THEME COLORS ---------- */
-html {
-  color-scheme: light dark;
-  --accent-color: oklch(55% 0.3 145);
-  --border-color: oklch(80% 3% 200);
-  --nav-bg: oklch(98% 0.02 200);
-  --text-color: oklch(15% 0 0);
-  --body-bg: white;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    --nav-bg: oklch(25% 0.02 200);
-    --text-color: oklch(95% 0 0);
-    --border-color: oklch(65% 8% 200 / 50%);
-    --body-bg: oklch(18% 0.02 200);
-  }
-}
-
-body {
-  background-color: var(--body-bg);
-  color: var(--text-color);
-  transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-/* ---------- THEME SWITCHER ---------- */
-.color-scheme {
-  position: absolute;
-  top: 0.8rem;
-  right: 1rem;
-  font-size: 0.85rem;
-  color: var(--text-color);
-}
-
-.color-scheme select {
-  font-family: inherit;
-  background: var(--nav-bg);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 0.3em;
-  padding: 0.1em 0.3em;
-}
-
-/* Smooth transitions for all */
-* {
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
