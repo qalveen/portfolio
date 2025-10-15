@@ -16,30 +16,33 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 2em;
-  border-bottom: 1px solid oklch(80% 3% 200);
-  padding: 0.8em 0;
+  background-color: var(--nav-bg);
+  padding: 1em 0;
+  border-bottom: 2px solid var(--border-color);
   margin-bottom: 2em;
-  background: canvas;
+  width: 100%;
 }
 
 nav a {
   text-decoration: none;
-  color: inherit;
+  color: var(--text-color);
   font-weight: 500;
-  padding-bottom: 0.4em;
+  font-size: 1.1rem;
+  padding: 0.5em 0.8em;
   border-bottom: 0.25em solid transparent;
-  transition: border-bottom 0.2s ease, color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 nav a.current {
-  border-bottom-color: oklch(85% 3% 200);
-  font-weight: bold;
+  border-bottom-color: var(--accent-color);
+  font-weight: 700;
 }
 
 nav a:hover {
-  border-bottom-color: var(--color-accent);
-  color: var(--color-accent);
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
 }
+
 
 /* ---------- Contact Form ---------- */
 
@@ -217,26 +220,50 @@ nav a:hover {
 }
 
 
+/* ---------- THEME COLORS ---------- */
+html {
+  color-scheme: light dark;
+  --accent-color: oklch(55% 0.3 145);
+  --border-color: oklch(80% 3% 200);
+  --nav-bg: oklch(98% 0.02 200);
+  --text-color: oklch(15% 0 0);
+  --body-bg: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --nav-bg: oklch(25% 0.02 200);
+    --text-color: oklch(95% 0 0);
+    --border-color: oklch(65% 8% 200 / 50%);
+    --body-bg: oklch(18% 0.02 200);
+  }
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
 /* ---------- THEME SWITCHER ---------- */
 .color-scheme {
   position: absolute;
-  top: 0.5rem;
+  top: 0.8rem;
   right: 1rem;
-  font-size: 85%;
-  font-family: inherit;
-  color: canvastext;
+  font-size: 0.85rem;
+  color: var(--text-color);
 }
 
 .color-scheme select {
   font-family: inherit;
-  font-size: inherit;
+  background: var(--nav-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   border-radius: 0.3em;
-  border: 1px solid oklch(50% 10% 200 / 40%);
-  background: canvas;
-  color: canvastext;
+  padding: 0.1em 0.3em;
 }
 
-/* Smooth transitions */
+/* Smooth transitions for all */
 * {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }

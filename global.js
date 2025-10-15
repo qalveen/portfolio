@@ -4,13 +4,13 @@ function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-/* --- Step 3: Automatic Navigation Menu --- */
+/* ---------- STEP 3: AUTOMATIC NAVIGATION MENU ---------- */
 let pages = [
   { url: '', title: 'Home' },
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
   { url: 'resume/', title: 'Resume' },
-  { url: 'https://github.com/qalveen', title: 'GitHub' }
+  { url: 'https://github.com/qalveen', title: 'GitHub' },
 ];
 
 let nav = document.createElement('nav');
@@ -19,7 +19,7 @@ document.body.prepend(nav);
 const BASE_PATH =
   location.hostname === 'localhost' || location.hostname === '127.0.0.1'
     ? '/'
-    : '/portfolio/'; // 
+    : '/portfolio/';
 
 for (let p of pages) {
   let url = p.url;
@@ -33,17 +33,19 @@ for (let p of pages) {
   a.href = url;
   a.textContent = title;
 
+  // Highlight the current page
   a.classList.toggle(
     'current',
     a.host === location.host && a.pathname === location.pathname
   );
 
+  // External links (GitHub)
   a.toggleAttribute('target', a.host !== location.host);
 
   nav.append(a);
 }
 
-/* --- Step 4: Dark Mode Switcher --- */
+/* ---------- STEP 4: DARK MODE SWITCHER ---------- */
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
@@ -55,22 +57,19 @@ document.body.insertAdjacentHTML(
       <option value="dark">Dark</option>
     </select>
   </label>
-  `
+`
 );
 
 let select = document.querySelector('.color-scheme select');
 
-/* Helper function to set color scheme */
 function setColorScheme(value) {
   document.documentElement.style.setProperty('color-scheme', value);
   localStorage.colorScheme = value;
   select.value = value;
 }
 
-/* Load saved preference (if any) */
-if ("colorScheme" in localStorage) {
+if ('colorScheme' in localStorage) {
   setColorScheme(localStorage.colorScheme);
 }
 
-/* Listen for user changes */
-select.addEventListener('input', e => setColorScheme(e.target.value));
+select.addEventListener('input', (e) => setColorScheme(e.target.value));
