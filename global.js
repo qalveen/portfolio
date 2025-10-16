@@ -87,3 +87,26 @@ select.addEventListener("input", (e) => {
 function applyColorScheme(value) {
   document.documentElement.style.setProperty("color-scheme", value);
 }
+
+// ──────────────────────────────────────────────
+// Step 5: Better Contact Form (optional)
+// ──────────────────────────────────────────────
+const form = document.querySelector("form");
+
+form?.addEventListener("submit", (event) => {
+  event.preventDefault(); // Stop normal submission
+
+  // Collect all form data
+  const data = new FormData(form);
+  let url = form.action + "?"; // Start building the mailto link
+  const params = [];
+
+  // Build properly encoded query parameters
+  for (let [name, value] of data) {
+    params.push(`${name}=${encodeURIComponent(value)}`);
+  }
+
+  url += params.join("&");
+  location.href = url; // Open the email client with the encoded URL
+});
+
