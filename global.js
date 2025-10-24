@@ -110,3 +110,28 @@ form?.addEventListener("submit", (event) => {
   location.href = url; // Open the email client with the encoded URL
 });
 
+// ─────────────────────────────────────────────
+// Step 1.2: Load project data from JSON
+// ─────────────────────────────────────────────
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
+    console.log(response); // To inspect the response in the console
+
+    // Check if the response is OK (status code 200–299)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    // Parse the response body as JSON
+    const data = await response.json();
+
+    // Return the parsed data
+    return data;
+
+  } catch (error) {
+    console.error("Error fetching or parsing JSON data:", error);
+  }
+}
+
