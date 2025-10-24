@@ -135,3 +135,4 @@ export async function fetchJSON(url) {
   }
 }
 
+window.fetchJSON = fetchJSON;
