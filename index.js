@@ -1,4 +1,4 @@
-import { fetchJSON, renderProjects } from './global.js';
+import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
 
 // Fetch all projects from the JSON file
 const projects = await fetchJSON('./lib/projects.json');
@@ -11,9 +11,6 @@ const projectsContainer = document.querySelector('.projects');
 
 // Render the projects dynamically
 renderProjects(latestProjects, projectsContainer, 'h2');
-
-import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
-
 
 // ─────────────────────────────────────────────
 // Step 3: Fetch GitHub API data
