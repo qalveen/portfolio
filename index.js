@@ -1,4 +1,6 @@
 import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
+const profileStats = document.querySelector('#profile-stats');
+
 
 // Fetch all projects from the JSON file
 const projects = await fetchJSON('./lib/projects.json');
