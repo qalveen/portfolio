@@ -14,11 +14,6 @@ renderProjects(latestProjects, projectsContainer, 'h2');
 
 import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
 
-// Fetch the latest 3 projects (from Step 2)
-const projects = await fetchJSON('./lib/projects.json');
-const latestProjects = projects.slice(0, 3);
-const projectsContainer = document.querySelector('.projects');
-renderProjects(latestProjects, projectsContainer, 'h2');
 
 // ─────────────────────────────────────────────
 // Step 3: Fetch GitHub API data
