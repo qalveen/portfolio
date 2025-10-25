@@ -5,6 +5,8 @@ const projects = await fetchJSON('../lib/projects.json');
 const projectsContainer = document.querySelector('.projects');
 
 renderProjects(projects, projectsContainer, 'h2');
+document.querySelector(".projects-title").textContent = `Projects (${projects.length})`;
+
 
 // ─────────────────────────────────────────────
 // Step 1.6 – Display project count
