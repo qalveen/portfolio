@@ -7,11 +7,4 @@ const projectsContainer = document.querySelector('.projects');
 renderProjects(projects, projectsContainer, 'h2');
 document.querySelector(".projects-title").textContent = `${projects.length} Projects`;
 
-// ─────────────────────────────────────────────
-// Step 1.6 – Display project count
-// ─────────────────────────────────────────────
-const title = document.querySelector('.projects-title');
-if (title && projects) {
-  title.textContent = `Projects (${projects.length})`;
-}
 
