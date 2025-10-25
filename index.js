@@ -20,8 +20,6 @@ renderProjects(latestProjects, projectsContainer, 'h2');
 const githubData = await fetchGitHubData('qalveen');
 console.log(githubData);
 
-const profileStats = document.querySelector('#profile-stats');
-
 if (profileStats) {
   profileStats.innerHTML = `
     <dl>
