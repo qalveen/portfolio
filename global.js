@@ -171,8 +171,8 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 // ─────────────────────────────────────────────
 // Step 3: Fetch GitHub data
 // ─────────────────────────────────────────────
-export async function fetchGitHubData(username) {
+export async function fetchGitHubData(qalveen) {
   // Use the existing fetchJSON helper to load data from GitHub's API
-  return fetchJSON(`https://api.github.com/users/${username}`);
+  return fetchJSON(`https://api.github.com/users/${qalveen}`);
 }
 
