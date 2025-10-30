@@ -19,6 +19,20 @@ html[style*="dark"] {
   --nav-bg: oklch(10% 0.02 200);
 }
 
+/* --- HOMEPAGE IMAGE FIX --- */
+.hero-image {
+  max-width: 500px;      /* caps how big the container can be */
+  margin: 2em auto;      /* centers it on the page */
+}
+
+.hero-image img {
+  width: 100%;           /* scales to container size */
+  height: auto;          /* keeps aspect ratio */
+  border-radius: 0.5em;  /* optional: rounded corners */
+  display: block;
+}
+
+
 /* ---------- BODY ---------- */
 body {
   background: var(--bg-color);
