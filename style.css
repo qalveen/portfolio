@@ -236,3 +236,88 @@ button:hover {
   grid-row: 2;
 }
 
+.project-year {
+  margin-top: 0.5em;
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  letter-spacing: 0.03em;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+
+/* ===== PIE CHART LAYOUT ===== */
+.pie-container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  margin-top: 2em;
+}
+
+/* ===== LEGEND GRID ===== */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  list-style: none;
+  padding: 1em;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5em;
+  flex: 1; /* ✅ legend takes remaining space */
+}
+
+/* Each legend item is flex */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4em; /* spacing between color and text */
+}
+
+/* Color swatch */
+.legend-item .swatch {
+  width: 1em;
+  height: 1em;
+  background: var(--color);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.searchBar {
+  margin-top: 2em;
+  padding: 0.8em 1em;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 25rem;
+}
+
+/* Hover fade effect on wedges */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.45;
+}
+
+/* Smooth transitions */
+#projects-pie-plot path {
+  transition: opacity 200ms, fill 200ms;
+  cursor: pointer;
+}
+
+/* Highlight selected slice + legend entry */
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected:is(path) {
+  fill: var(--color) !important;
+}
+
+/* So clicking legend also looks clickable */
+.legend-item {
+  cursor: pointer;
+}

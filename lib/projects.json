@@ -1,73 +1,73 @@
 [
     {
-        "title": "Lorem ipsum dolor",
+        "title": "Project 2",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    {
+        "title": "Lab 7",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    {
+        "title": "DSC 106",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    {
+        "title": "Lab 6",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
+        "title": "Assignment 2",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
+        "title": "Lab 5",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
+        "title": "COGS",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
+        "title": "Assignment 1",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
+        "title": "Lab 3",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
+        "title": "Project 1",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
+        "title": "Lab 2",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-    },
-    {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-    },
-    {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-    },
-    {
-        "title": "Lorem ipsum dolor",
-        "year": "2024",
+        "title": "Lab 1",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     }
