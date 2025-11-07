@@ -31,27 +31,4 @@ if (profileStats) {
   `;
 }
 
-/* ===== META PAGE STAT COMPACT FIX ===== */
-body.meta #stats .stats {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.25rem; /* reduces vertical spacing */
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-body.meta #stats .stats dt {
-  font-size: 0.6rem; /* smaller label */
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  opacity: 0.5;
-  margin-bottom: 0.1rem;
-}
-
-body.meta #stats .stats dd {
-  font-size: 1.8rem !important;   /* <-- THIS makes the numbers smaller */
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
 

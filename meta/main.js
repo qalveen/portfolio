@@ -150,8 +150,8 @@ function renderLanguageBreakdown(selection, commits) {
 function renderScatterPlot(data, commits) {
   const width = 700;
   const height = 450;
-  const margin = { top: 10, right: 10, bottom: 25, left: 40 };
-
+  const margin = { top: 10, right: 40, bottom: 25, left: 40 };
+  
   const usableArea = {
     left: margin.left,
     top: margin.top,
@@ -175,11 +175,11 @@ function renderScatterPlot(data, commits) {
     .domain([0, 24])
     .range([usableArea.bottom, usableArea.top]);
 
-  // radius scale ⭐
+  // ✅ Dot size scale
   const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
   const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([3, 18]);
 
-  // gridlines FIRST
+  // Gridlines FIRST
   svg.append("g")
     .attr("transform", `translate(${usableArea.left},0)`)
     .call(
@@ -189,9 +189,7 @@ function renderScatterPlot(data, commits) {
     )
     .attr("class", "gridlines");
 
-  // sort so small dots stay on top
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
-
   const dots = svg.append("g").attr("class", "dots");
 
   dots.selectAll("circle")
@@ -213,7 +211,15 @@ function renderScatterPlot(data, commits) {
       d3.select(event.currentTarget).style("fill-opacity", 0.7);
     });
 
-  // axes
+  // ✅ FIXES "Nov 0"
+  svg.append("g")
+    .attr("transform", `translate(0,${usableArea.bottom})`)
+    .call(
+      d3.axisBottom(xScale)
+        .ticks(8)
+        .tickFormat(d3.timeFormat("%b %d")) // <-- FIXED HERE
+    );
+
   svg.append("g")
     .attr("transform", `translate(${usableArea.left},0)`)
     .call(
@@ -222,12 +228,8 @@ function renderScatterPlot(data, commits) {
         .tickFormat((d) => String(d % 24).padStart(2, "0") + ":00")
     );
 
-  svg.append("g")
-    .attr("transform", `translate(0,${usableArea.bottom})`)
-    .call(d3.axisBottom(xScale).ticks(8));
-
   //
-  // ---- STEP 5 — ADD BRUSHING ----
+  // ---- STEP 5 — BRUSHING ----
   //
   const brush = d3.brush()
     .extent([[usableArea.left, usableArea.top], [usableArea.right, usableArea.bottom]])
@@ -239,11 +241,11 @@ function renderScatterPlot(data, commits) {
     });
 
   svg.call(brush);
-  svg.selectAll(".dots, .overlay ~ *").raise(); // tooltip fix
+  svg.selectAll(".dots, .overlay ~ *").raise();
 }
 
 //
-// ---------------------------- RUN ALL ----------------------------
+// ---------------------------- RUN EVERYTHING ----------------------------
 let data = await loadData();
 let commits = processCommits(data);
 renderCommitInfo(data, commits);
