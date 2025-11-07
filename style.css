@@ -321,3 +321,193 @@ button:hover {
 .legend-item {
   cursor: pointer;
 }
+
+/* ---------- META PAGE STATS GRID ---------- */
+.stats{
+  display: grid;
+  grid-auto-flow: column;                 /* ← fill down each column first */
+  grid-auto-columns: minmax(12rem,1fr);   /* each stat = one column */
+  gap: 2.5rem 2rem;                       /* row / column gaps */
+  align-items: end;
+  margin-top: 2rem;
+}
+
+.stats dt{
+  grid-row: 1;                            /* labels on row 1 */
+  text-align: center;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.stats dd{
+  grid-row: 2;                            /* values on row 2 */
+  text-align: center;
+  margin: 0;
+  font-size: 2.8rem;
+  font-weight: 800;
+}
+
+/* --- Scatterplot grid lines --- */
+.gridlines line {
+  stroke: var(--border-color);
+  stroke-opacity: 0.3;
+}
+
+.gridlines path {
+  stroke: none; /* removes the y-axis baseline */
+}
+
+/* Tooltip layout */
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0;
+}
+
+/* Tooltip appearance */
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 0.8em 1.2em;
+  border-radius: 0.5em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 999;
+  transition: opacity 300ms ease;
+}
+
+.tooltip[hidden] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Dot hover animation */
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+.tooltip {
+  position: fixed;
+  background: oklch(98% 0.01 200 / 90%);
+  padding: 0.8em 1em;
+  border-radius: 0.5em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  backdrop-filter: blur(6px);
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: 0.3em 1em;
+}
+
+.tooltip {
+  position: fixed;
+  background: white;
+  padding: 0.8em 1em;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+.gridlines line {
+  stroke: #ccc;
+  opacity: 0.3;
+}
+
+/* center chart + summary + breakdown */
+#chart {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* spacing between pieces */
+#selection-count {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+#language-breakdown {
+  margin-top: 2rem;
+  max-width: 800px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* ---------- META PAGE — COMPACT LAYOUT ---------- */
+
+/* Center the whole Meta page content */
+body.meta {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+/* Make the stats smaller and spaced tighter */
+.meta #stats .stats {
+  font-size: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.meta #stats .stats dt {
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+}
+
+.meta #stats .stats dd {
+  font-size: 1.6rem;      /* smaller numbers */
+  font-weight: 700;
+}
+
+
+/* ---------- Language Breakdown (brush results) ---------- */
+
+#language-breakdown {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  text-align: center;
+}
+
+#language-breakdown dt {
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+#language-breakdown dd {
+  font-size: 1.2rem;     /* smaller */
+  font-weight: 600;
+}
+
+/* Selection count text */
+#selection-count {
+  text-align: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+
+

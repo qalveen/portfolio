@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Code Meta</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body class="meta">
+  <h1>Code Meta</h1>
+
+  <!-- Step 1: Summary Stats -->
+  <div id="stats"></div>
+
+  <!-- Step 2–5: Scatterplot -->
+  <h2>Commits by time of day</h2>
+  <div id="chart"></div>
+
+  <!-- Step 5.5: Brushing selection count -->
+  <p id="selection-count">No commits selected</p>
+
+  <!-- Step 5.6: Language breakdown of selected commits -->
+  <dl id="language-breakdown" class="stats"></dl>
+
+  <!-- Tooltip (Step 3) -->
+  <dl id="commit-tooltip" class="info tooltip" hidden>
+    <dt>Commit</dt>
+    <dd><a href="" id="commit-link" target="_blank"></a></dd>
+
+    <dt>Date</dt>
+    <dd id="commit-date"></dd>
+
+    <dt>Author</dt>
+    <dd id="commit-author"></dd>
+
+    <dt>Lines edited</dt>
+    <dd id="commit-lines"></dd>
+  </dl>
+
+  <!-- Site nav + theme switch -->
+  <script src="../global.js" type="module"></script>
+
+  <!-- Meta logic: CSV → stats → scatterplot → brushing -->
+  <script src="./main.js" type="module"></script>
+</body>
+</html>

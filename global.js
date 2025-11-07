@@ -14,6 +14,7 @@ const pages = [
   { url: "contact/", title: "Contact" },
   { url: "resume/", title: "CV" }, // or "Resume"
   { url: "https://github.com/qalveen", title: "GitHub" },
+  { url: "meta/", title: "Meta" },
 ];
 
 // Correct base for local dev vs GitHub Pages
