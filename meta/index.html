@@ -10,20 +10,34 @@
 <body class="meta">
   <h1>Code Meta</h1>
 
-  <!-- Step 1: Summary Stats -->
+  <!-- Time filtering UI -->
+  <div id="timeline-control" style="display:flex; align-items:center; gap:1rem; max-width:900px;">
+    <label>
+      Show commits until:
+      <input type="range" id="commit-progress" min="0" max="100" value="100" />
+    </label>
+    <time id="commit-time" style="margin-left:auto;"></time>
+  </div>
+
+  <!-- 🔥 Scatterplot RIGHT AFTER SLIDER (not inside scrolly) -->
+  <div id="scatter-plot">
+    <h2>Commits by time of day</h2>
+    <div id="chart"></div>
+  </div>
+
+  <!-- 🔥 Race for Biggest File BELOW PLOT -->
+  <h2>Race for the biggest file</h2>
+  <dl id="files"></dl>
+
+  <!-- 🔥 Commit Stats BELOW file vis -->
   <div id="stats"></div>
 
-  <!-- Step 2–5: Scatterplot -->
-  <h2>Commits by time of day</h2>
-  <div id="chart"></div>
+  <!-- 🔥 Scrollytelling LAST -->
+  <div id="scrolly-1">
+    <div id="scatter-story"></div>
+  </div>
 
-  <!-- Step 5.5: Brushing selection count -->
-  <p id="selection-count">No commits selected</p>
-
-  <!-- Step 5.6: Language breakdown of selected commits -->
-  <dl id="language-breakdown" class="stats"></dl>
-
-  <!-- Tooltip (Step 3) -->
+  <!-- Tooltip -->
   <dl id="commit-tooltip" class="info tooltip" hidden>
     <dt>Commit</dt>
     <dd><a href="" id="commit-link" target="_blank"></a></dd>
@@ -38,10 +52,7 @@
     <dd id="commit-lines"></dd>
   </dl>
 
-  <!-- Site nav + theme switch -->
   <script src="../global.js" type="module"></script>
-
-  <!-- Meta logic: CSV → stats → scatterplot → brushing -->
   <script src="./main.js" type="module"></script>
 </body>
 </html>
