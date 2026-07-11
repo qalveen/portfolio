@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- about.html — room to go deeper than the home page. Edit freely. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Calvin Magsie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <a class="nav__brand" href="index.html">CM</a>
+    <nav class="nav__links">
+      <a href="about.html" class="active">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title">About</h1>
+
+    <!-- EDIT: your story, in your own voice. This is where longer is good. -->
+    <div class="prose">
+      <p>
+        I'm a Data Science graduate from UC San Diego (B.S., June 2026), and I
+        like the whole pipeline — from wrangling raw, messy data to shipping
+        something people can actually use. Lately that's meant building
+        end-to-end RAG systems and analytics tools that turn open questions
+        into answers a team can act on.
+      </p>
+      <p>
+        I work best iteratively and hands-on: I'd rather sketch a rough version,
+        put it in front of people, and sharpen it than plan forever. That habit
+        shows up in how I approach data problems too — start with a defensible
+        baseline, measure, then improve the part that matters.
+      </p>
+      <p>
+        I'm looking for a role in data science, analytics, or AI engineering
+        where I can keep building. Outside of work you'll find me watching
+        soccer, playing padel or basketball, catching a movie, or talking cars.
+      </p>
+    </div>
+
+    <!-- Technical skills — edit the lists to match what you want front-and-center -->
+    <h2 class="page__section">What I work with</h2>
+    <div class="skills">
+      <div class="skills__group">
+        <h3>Languages &amp; Data</h3>
+        <p>Python, SQL, R, Pandas, NumPy</p>
+      </div>
+      <div class="skills__group">
+        <h3>ML &amp; AI</h3>
+        <p>scikit-learn, deep learning, RAG, LLM tooling, Claude API</p>
+      </div>
+      <div class="skills__group">
+        <h3>Tools</h3>
+        <p>Git, Node.js, FAISS, Jupyter, Tableau</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span class="year"></span> Calvin Magsie</p>
+  </footer>
+
+  <script src="year.js"></script>
+</body>
+</html>
