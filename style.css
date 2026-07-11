@@ -1,31 +1,25 @@
 /* =========================================================
-   style.css — all the visual styling for index.html
-   The variables below are your control panel. Change a few
-   hex values here and the whole site re-themes.
+   style.css — ONE stylesheet at the ROOT, shared by every page.
+   Pages in subfolders reach it via ../style.css
+   The variables below are your control panel.
    ========================================================= */
 
 :root {
-  /* --- Colors: edit these to change the whole palette --- */
-  --bg:        #0e1116;   /* page background (deep ink) */
-  --surface:   #161b22;   /* cards, raised areas */
-  --text:      #e6edf3;   /* main text */
-  --muted:     #8b98a5;   /* secondary text */
-  --accent:    #4fd1c5;   /* one signature color (teal) */
+  --bg:        #0e1116;
+  --surface:   #161b22;
+  --text:      #e6edf3;
+  --muted:     #8b98a5;
+  --accent:    #4fd1c5;
   --border:    #232b36;
 
-  /* --- Type --- */
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Space Grotesk", var(--font-body);
 
-  /* --- Layout --- */
-  --max: 780px;           /* content column width */
+  --max: 780px;
 }
 
-/* ---------- Reset-ish base ---------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--text);
@@ -33,17 +27,15 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-
 a { color: inherit; text-decoration: none; }
 
-/* Reusable centered column */
-.hero, .section, .nav, .footer {
+.nav, .hero, .page, .footer {
   max-width: var(--max);
   margin-inline: auto;
   padding-inline: 24px;
 }
 
-/* ---------- Nav ---------- */
+/* Nav */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -64,9 +56,9 @@ a { color: inherit; text-decoration: none; }
 .nav__links { display: flex; gap: 22px; font-size: 0.9rem; }
 .nav__links a { color: var(--muted); transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
+.nav__links a.active { color: var(--text); }
 
-/* ---------- Hero ---------- */
-.hero { padding-block: 90px 70px; }
+/* Hero (home) */
 .hero__eyebrow {
   color: var(--accent);
   font-size: 0.85rem;
@@ -84,47 +76,49 @@ a { color: inherit; text-decoration: none; }
 .hero__tagline {
   color: var(--muted);
   font-size: 1.15rem;
-  max-width: 34ch;
-  margin-bottom: 32px;
+  max-width: 40ch;
+  margin-bottom: 40px;
 }
-.hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero--home { padding-block: 90px 70px; }
 
-/* ---------- Buttons ---------- */
-.btn {
-  padding: 11px 22px;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: transform 0.15s, background 0.2s;
-}
-.btn:hover { transform: translateY(-2px); }
-.btn--solid { background: var(--accent); color: #08201d; }
-.btn--ghost { border: 1px solid var(--border); color: var(--text); }
-.btn--ghost:hover { border-color: var(--accent); }
-
-/* ---------- Sections ---------- */
-.section { padding-block: 56px; }
-.section__title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-}
-.section__index {
-  color: var(--accent);
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-.about p { color: var(--muted); margin-bottom: 14px; }
-
-/* ---------- Projects grid ---------- */
-.grid {
+/* Doorways */
+.doorways {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
 }
+.doorway {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.doorway:hover { border-color: var(--accent); transform: translateY(-3px); }
+.doorway__label { font-family: var(--font-display); font-weight: 700; }
+.doorway__hint { color: var(--muted); font-size: 0.85rem; }
+
+/* Inner pages */
+.page { padding-block: 64px 40px; }
+.page__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+.page__lede { color: var(--muted); font-size: 1.05rem; margin-bottom: 36px; max-width: 55ch; }
+.page__section { font-family: var(--font-display); font-size: 1.3rem; margin: 48px 0 20px; }
+
+.prose p { color: var(--muted); margin-bottom: 16px; max-width: 62ch; }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+.skills__group h3 { font-size: 0.95rem; margin-bottom: 6px; color: var(--accent); }
+.skills__group p { color: var(--muted); font-size: 0.92rem; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -135,13 +129,7 @@ a { color: inherit; text-decoration: none; }
 .card:hover { border-color: var(--accent); transform: translateY(-4px); }
 .card__title { font-size: 1.1rem; margin-bottom: 10px; }
 .card__desc { color: var(--muted); font-size: 0.92rem; margin-bottom: 14px; }
-.card__tags {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-}
+.card__tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .card__tags li {
   font-size: 0.72rem;
   color: var(--accent);
@@ -151,42 +139,24 @@ a { color: inherit; text-decoration: none; }
 }
 .card__link { color: var(--accent); font-size: 0.88rem; font-weight: 500; }
 
-/* ---------- Experience timeline ---------- */
-.timeline { list-style: none; display: flex; flex-direction: column; gap: 22px; }
-.timeline__item {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 16px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--border);
-}
-.timeline__date { color: var(--muted); font-size: 0.85rem; padding-top: 2px; }
-.timeline__role { font-size: 1rem; }
-.timeline__note { color: var(--muted); font-size: 0.85rem; }
+.exp { padding-bottom: 26px; margin-bottom: 26px; border-bottom: 1px solid var(--border); }
+.exp__head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 12px; }
+.exp__role { font-size: 1.05rem; }
+.exp__meta { color: var(--muted); font-size: 0.85rem; }
+.exp__points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.exp__points li { color: var(--muted); font-size: 0.95rem; padding-left: 18px; position: relative; }
+.exp__points li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
 
-/* ---------- Contact ---------- */
-.section--contact { text-align: center; }
-.section--contact .section__title { justify-content: center; }
-.contact__line { color: var(--muted); margin-bottom: 22px; }
-.contact__links { display: flex; justify-content: center; gap: 28px; }
+.page--contact .contact__links { display: flex; gap: 28px; flex-wrap: wrap; }
 .contact__links a { color: var(--accent); font-weight: 500; }
 .contact__links a:hover { text-decoration: underline; }
 
-/* ---------- Footer ---------- */
-.footer {
-  text-align: center;
-  padding-block: 40px;
-  color: var(--muted);
-  font-size: 0.82rem;
-}
+.footer { text-align: center; padding-block: 40px; color: var(--muted); font-size: 0.82rem; }
 
-/* ---------- Mobile ---------- */
 @media (max-width: 560px) {
   .nav__links { gap: 16px; }
-  .timeline__item { grid-template-columns: 1fr; gap: 4px; }
+  .exp__head { flex-direction: column; }
 }
-
-/* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto; }
 }

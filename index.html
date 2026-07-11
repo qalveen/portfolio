@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-  index.html — the HOME page. Keep this short: a quick intro + doorways
-  to the other pages. The longer content lives in about/projects/etc.
--->
+<!-- index.html (ROOT) — the home page. style.css & year.js are right here, so no ../ needed. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -15,18 +12,16 @@
 </head>
 <body>
 
-  <!-- ===== Shared nav (same block on every page; "active" marks the current one) ===== -->
   <header class="nav">
     <a class="nav__brand" href="index.html">CM</a>
     <nav class="nav__links">
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="experience.html">Experience</a>
-      <a href="contact.html">Contact</a>
+      <a href="about/index.html">About</a>
+      <a href="projects/index.html">Projects</a>
+      <a href="experience/index.html">Experience</a>
+      <a href="contact/index.html">Contact</a>
     </nav>
   </header>
 
-  <!-- ===== Brief hero — this is the whole home page ===== -->
   <section class="hero hero--home">
     <p class="hero__eyebrow">San Diego, CA</p>
     <h1 class="hero__name">Calvin Magsie</h1>
@@ -35,21 +30,20 @@
       learning, and end-to-end AI systems.
     </p>
 
-    <!-- Doorways to the longer pages -->
     <div class="doorways">
-      <a class="doorway" href="about.html">
+      <a class="doorway" href="about/index.html">
         <span class="doorway__label">About</span>
         <span class="doorway__hint">Who I am &amp; what I'm after</span>
       </a>
-      <a class="doorway" href="projects.html">
+      <a class="doorway" href="projects/index.html">
         <span class="doorway__label">Projects</span>
         <span class="doorway__hint">Things I've built</span>
       </a>
-      <a class="doorway" href="experience.html">
+      <a class="doorway" href="experience/index.html">
         <span class="doorway__label">Experience</span>
         <span class="doorway__hint">Where I've worked</span>
       </a>
-      <a class="doorway" href="contact.html">
+      <a class="doorway" href="contact/index.html">
         <span class="doorway__label">Contact</span>
         <span class="doorway__hint">Let's talk</span>
       </a>
