@@ -1,23 +1,55 @@
 /* =========================================================
-   style.css — ONE stylesheet at the ROOT, shared by every page.
-   Pages in subfolders reach it via ../style.css
-   The variables below are your control panel.
+   style.css — ONE stylesheet, shared by every page.
+   Subfolder pages reach it via ../style.css
    ========================================================= */
 
-:root {
-  --bg:        #0e1116;
-  --surface:   #161b22;
-  --text:      #e6edf3;
-  --muted:     #8b98a5;
-  --accent:    #4fd1c5;
-  --border:    #232b36;
+/* ---------- Theming ----------
+   Light is the BASE palette. Dark is applied in two situations:
+   (1) AUTO mode — the visitor's browser/OS prefers dark, and
+   (2) they explicitly picked Dark with the toggle.
+   Keep the two dark blocks in sync if you tweak colors.        */
 
+:root {
+  color-scheme: light;
+  /* light palette */
+  --bg:      #ffffff;
+  --surface: #f5f7f9;
+  --text:    #1a1f26;
+  --muted:   #5b6672;
+  --accent:  #0d9488;   /* deeper teal so it stays readable on white */
+  --border:  #e3e8ec;
+
+  /* type + layout (not theme-dependent) */
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Space Grotesk", var(--font-body);
-
   --max: 780px;
 }
 
+/* AUTO mode + OS prefers dark */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg:      #0e1116;
+    --surface: #161b22;
+    --text:    #e6edf3;
+    --muted:   #8b98a5;
+    --accent:  #4fd1c5;
+    --border:  #232b36;
+  }
+}
+
+/* Visitor explicitly chose Dark */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:      #0e1116;
+  --surface: #161b22;
+  --text:    #e6edf3;
+  --muted:   #8b98a5;
+  --accent:  #4fd1c5;
+  --border:  #232b36;
+}
+
+/* ---------- Base ---------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -26,6 +58,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;  /* smooth theme switch */
 }
 a { color: inherit; text-decoration: none; }
 
@@ -35,7 +68,7 @@ a { color: inherit; text-decoration: none; }
   padding-inline: 24px;
 }
 
-/* Nav */
+/* ---------- Nav ---------- */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -53,12 +86,30 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 1px;
   color: var(--accent);
 }
-.nav__links { display: flex; gap: 22px; font-size: 0.9rem; }
+.nav__links { display: flex; align-items: center; gap: 20px; font-size: 0.9rem; }
 .nav__links a { color: var(--muted); transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
 .nav__links a.active { color: var(--text); }
 
-/* Hero (home) */
+/* ---------- Theme toggle button ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+.theme-toggle__icon { font-size: 0.9rem; line-height: 1; }
+
+/* ---------- Hero (home) ---------- */
 .hero__eyebrow {
   color: var(--accent);
   font-size: 0.85rem;
@@ -73,41 +124,27 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -1px;
   margin-bottom: 18px;
 }
-.hero__tagline {
-  color: var(--muted);
-  font-size: 1.15rem;
-  max-width: 40ch;
-  margin-bottom: 40px;
-}
+.hero__tagline { color: var(--muted); font-size: 1.15rem; max-width: 40ch; margin-bottom: 40px; }
 .hero--home { padding-block: 90px 70px; }
 
-/* Doorways */
-.doorways {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
-}
+/* ---------- Doorways ---------- */
+.doorways { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
 .doorway {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
+  display: flex; flex-direction: column; gap: 4px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
   transition: border-color 0.2s, transform 0.2s;
 }
 .doorway:hover { border-color: var(--accent); transform: translateY(-3px); }
 .doorway__label { font-family: var(--font-display); font-weight: 700; }
 .doorway__hint { color: var(--muted); font-size: 0.85rem; }
 
-/* Inner pages */
+/* ---------- Inner pages ---------- */
 .page { padding-block: 64px 40px; }
 .page__title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 6vw, 2.6rem);
-  letter-spacing: -0.5px;
-  margin-bottom: 24px;
+  letter-spacing: -0.5px; margin-bottom: 24px;
 }
 .page__lede { color: var(--muted); font-size: 1.05rem; margin-bottom: 36px; max-width: 55ch; }
 .page__section { font-family: var(--font-display); font-size: 1.3rem; margin: 48px 0 20px; }
@@ -120,10 +157,8 @@ a { color: inherit; text-decoration: none; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 22px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 22px;
   transition: border-color 0.2s, transform 0.2s;
 }
 .card:hover { border-color: var(--accent); transform: translateY(-4px); }
@@ -131,11 +166,8 @@ a { color: inherit; text-decoration: none; }
 .card__desc { color: var(--muted); font-size: 0.92rem; margin-bottom: 14px; }
 .card__tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .card__tags li {
-  font-size: 0.72rem;
-  color: var(--accent);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 3px 10px;
+  font-size: 0.72rem; color: var(--accent);
+  border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px;
 }
 .card__link { color: var(--accent); font-size: 0.88rem; font-weight: 500; }
 
@@ -154,7 +186,7 @@ a { color: inherit; text-decoration: none; }
 .footer { text-align: center; padding-block: 40px; color: var(--muted); font-size: 0.82rem; }
 
 @media (max-width: 560px) {
-  .nav__links { gap: 16px; }
+  .nav__links { gap: 12px; }
   .exp__head { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {

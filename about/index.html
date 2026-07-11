@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<!--
-  about/index.html — this page lives INSIDE the about/ folder.
-  So root files need ../  (style.css -> ../style.css) and other
-  pages are ../projects/index.html, etc.
--->
+<!-- about/index.html — inside about/, so root files use ../ -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
   <title>About — Calvin Magsie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
@@ -22,6 +24,10 @@
       <a href="../projects/index.html">Projects</a>
       <a href="../experience/index.html">Experience</a>
       <a href="../contact/index.html">Contact</a>
+      <button class="theme-toggle" id="themeToggle" type="button">
+        <span class="theme-toggle__icon"></span>
+        <span class="theme-toggle__text"></span>
+      </button>
     </nav>
   </header>
 
