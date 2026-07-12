@@ -150,8 +150,15 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
+  margin-bottom: 16px;
+}
+.hero__stats {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
   margin-bottom: 48px;
 }
+.hero__stats span { color: var(--text); font-weight: 600; }
 .btn--resume {
   display: inline-flex;
   align-items: center;

@@ -68,3 +68,23 @@ document.querySelectorAll(".year").forEach(function (el) {
     });
   });
 })();
+
+/* 4) Homepage portfolio stats: counts Projects/Certificates live from the
+      Portfolio page, so the numbers stay correct as entries are added. */
+(function () {
+  var projectsEl = document.getElementById("statProjects");
+  var certsEl = document.getElementById("statCertificates");
+  if (!projectsEl || !certsEl) return;
+
+  fetch("portfolio/index.html")
+    .then(function (res) { return res.text(); })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      projectsEl.textContent = doc.querySelectorAll("#tab-projects .card").length;
+      certsEl.textContent = doc.querySelectorAll("#tab-certificates .card").length;
+    })
+    .catch(function () {
+      var stats = document.getElementById("portfolioStats");
+      if (stats) stats.hidden = true;
+    });
+})();
