@@ -194,6 +194,33 @@ a { color: inherit; text-decoration: none; }
 
 .prose p { color: var(--muted); margin-bottom: 16px; max-width: 62ch; }
 
+/* ---------- Portfolio tabs ---------- */
+.tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px;
+  gap: 4px;
+  margin-bottom: 36px;
+}
+.tab {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.tab:hover { color: var(--text); }
+.tab.active { background: var(--bg); color: var(--text); }
+.tab-panel[hidden] { display: none; }
+
 .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
 .skills__group h3 { font-size: 0.95rem; margin-bottom: 6px; color: var(--accent); }
 .skills__group p { color: var(--muted); font-size: 0.92rem; }

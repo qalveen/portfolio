@@ -43,3 +43,28 @@ document.querySelectorAll(".year").forEach(function (el) {
 
   render(current());
 })();
+
+/* 3) Portfolio tabs: switches between Projects / Certificates / Tech Stack panels. */
+(function () {
+  var tabs = document.querySelectorAll(".tab");
+  if (!tabs.length) return;
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      var target = tab.getAttribute("data-tab");
+
+      tabs.forEach(function (t) {
+        t.classList.remove("active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("active");
+      tab.setAttribute("aria-selected", "true");
+
+      document.querySelectorAll(".tab-panel").forEach(function (panel) {
+        var isTarget = panel.id === "tab-" + target;
+        panel.classList.toggle("active", isTarget);
+        panel.hidden = !isTarget;
+      });
+    });
+  });
+})();
