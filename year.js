@@ -88,3 +88,9 @@ document.querySelectorAll(".year").forEach(function (el) {
       if (stats) stats.hidden = true;
     });
 })();
+
+/* 5) Project showcase videos: force-muted (sound isn't part of the demo). */
+document.querySelectorAll("video.card__image").forEach(function (video) {
+  video.defaultMuted = true;
+  video.muted = true;
+});
