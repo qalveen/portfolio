@@ -435,3 +435,4 @@ html:has(dialog[open]) { overflow: hidden; }
   .me-marker__label { font-size: .7rem; padding: 3px 8px; }
   .me-marker svg { width: 20px; height: 20px; }
 }
+.hobby__photo--portrait { max-width: 320px; }
