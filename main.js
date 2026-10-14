@@ -312,3 +312,29 @@
   syncTheme();
   draw();
 })();
+
+/* Player card: click to flip, pointer tilt + shine */
+(function () {
+  var card = document.getElementById("fut");
+  if (!card) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  card.addEventListener("click", function () {
+    var on = !card.classList.contains("is-flipped");
+    card.classList.toggle("is-flipped", on);
+    card.setAttribute("aria-pressed", on);
+  });
+  if (reduce || !window.matchMedia("(pointer: fine)").matches) return;
+  card.addEventListener("pointermove", function (e) {
+    var r = card.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    card.classList.add("is-tilting");
+    card.style.setProperty("--rx", ((0.5 - y) * 16).toFixed(2) + "deg");
+    card.style.setProperty("--ry", ((x - 0.5) * 20).toFixed(2) + "deg");
+    card.style.setProperty("--mx", (x * 100).toFixed(1) + "%");
+    card.style.setProperty("--my", (y * 100).toFixed(1) + "%");
+  });
+  card.addEventListener("pointerleave", function () {
+    card.classList.remove("is-tilting");
+    card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg");
+  });
+})();
