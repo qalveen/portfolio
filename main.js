@@ -60,7 +60,7 @@
   /* ---------- Ask me ---------- */
   var ANSWERS = {
     what:  "I'm a business and data analyst. I dig into messy data, find what's really driving the numbers, and turn it into dashboards and recommendations people can act on.",
-    roles: "Business analyst and data analyst roles, especially where analytics meets strategy and stakeholders. I'm most excited about automotive and autonomous vehicles, AI, and sports.",
+    roles: "Business analyst and data analyst roles, especially where analytics meets strategy and stakeholders. I'm most excited about finance, automotive and autonomous vehicles, AI, and sports.",
     tools: "SQL and Excel every day, Tableau and Power BI for reporting, and Python (Pandas, scikit-learn, Streamlit) when a question needs a model or an app.",
     why:   "Because the best part of any project is the moment a clear chart changes someone's decision. I like being the person who translates between the data and the business.",
     fun:   "Padel, soccer, basketball, cars and movies. Scroll down to Off the clock and see how long you can keep a padel rally going."

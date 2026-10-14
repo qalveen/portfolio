@@ -77,13 +77,13 @@
           <p class="section__kicker">Selected work</p>
           <h2 class="section__title" id="work-title">Questions I've answered with data</h2>
         </div>
-        <div class="filters" role="group" aria-label="Filter projects"><button class="chip" type="button" data-filter="all" aria-pressed="true">All<span class="n">5</span></button><button class="chip" type="button" data-filter="business" aria-pressed="false">Business &amp; finance<span class="n">2</span></button><button class="chip" type="button" data-filter="sports" aria-pressed="false">Sports &amp; racing<span class="n">2</span></button><button class="chip" type="button" data-filter="viz" aria-pressed="false">Data viz<span class="n">2</span></button></div>
+        <div class="filters" role="group" aria-label="Filter projects"><button class="chip" type="button" data-filter="all" aria-pressed="true">All<span class="n">6</span></button><button class="chip" type="button" data-filter="business" aria-pressed="false">Business &amp; finance<span class="n">3</span></button><button class="chip" type="button" data-filter="sports" aria-pressed="false">Sports &amp; racing<span class="n">2</span></button><button class="chip" type="button" data-filter="viz" aria-pressed="false">Data viz<span class="n">2</span></button></div>
         <div class="works" id="works">
-          <button class="work work--wide" type="button" data-cat="sports" data-case="nba" aria-haspopup="dialog">
-            <div class="work__media"><img src="images/nba_project-thumb.jpg" alt="NBA Player Load Intelligence dashboard with a predicted risk board" loading="lazy" decoding="async" /></div>
+          <button class="work work--wide" type="button" data-cat="business" data-case="qcom" aria-haspopup="dialog">
+            <div class="work__media"><img src="images/qualcomm_forecast-thumb.jpg" alt="Tableau dashboard: Qualcomm QCT revenue by stream, Auto and IoT share, and actuals versus guidance" loading="lazy" decoding="async" /></div>
             <div>
-              <div class="work__row"><h3 class="work__title">NBA Player Load &amp; Injury-Risk Platform</h3><span class="work__metric">2.6× lift</span></div>
-              <p class="work__desc">Flags which players are most likely to miss upcoming games, so staff can manage workload before it becomes an injury.</p>
+              <div class="work__row"><h3 class="work__title">Qualcomm Revenue Forecast &amp; Earnings Variance Analysis</h3><span class="work__metric">25% → 42%</span></div>
+              <p class="work__desc">Forecasts Qualcomm's chip revenue by business line through FY27 and measures how each quarter landed against the company's own guidance.</p>
             </div>
           </button>
           <button class="work" type="button" data-cat="business" data-case="nvda" aria-haspopup="dialog">
@@ -98,6 +98,13 @@
             <div>
               <div class="work__row"><h3 class="work__title">AI Infrastructure &amp; Carbon Emissions</h3><span class="work__metric">r = 0.65</span></div>
               <p class="work__desc">Does the growth of AI infrastructure track with rising carbon emissions?</p>
+            </div>
+          </button>
+          <button class="work work--wide" type="button" data-cat="sports" data-case="nba" aria-haspopup="dialog">
+            <div class="work__media"><img src="images/nba_project-thumb.jpg" alt="NBA Player Load Intelligence dashboard with a predicted risk board" loading="lazy" decoding="async" /></div>
+            <div>
+              <div class="work__row"><h3 class="work__title">NBA Player Load &amp; Injury-Risk Platform</h3><span class="work__metric">2.6× lift</span></div>
+              <p class="work__desc">Flags which players are most likely to miss upcoming games, so staff can manage workload before it becomes an injury.</p>
             </div>
           </button>
           <button class="work" type="button" data-cat="sports" data-case="triton" aria-haspopup="dialog">
@@ -131,7 +138,7 @@
             <div><dt>Currently</dt><dd>Business Analyst, The Bot Company</dd></div>
             <div><dt>Education</dt><dd>B.S. Data Science, UCSD</dd></div>
             <div><dt>Based in</dt><dd>California</dd></div>
-            <div><dt>Industries</dt><dd>Automotive, AI, sports</dd></div>
+            <div><dt>Industries</dt><dd>Finance, automotive, AI, sports</dd></div>
           </dl>
         </div>
       </div>
@@ -319,14 +326,14 @@
     <div id="caseContent"></div>
   </dialog>
 
-  <template id="case-nba">
-    <div class="case__media"><img src="images/nba_project-thumb.jpg" alt="NBA Player Load Intelligence dashboard with a predicted risk board" /></div>
+  <template id="case-qcom">
+    <div class="case__media"><img src="images/qualcomm_forecast-thumb.jpg" alt="Tableau dashboard: Qualcomm QCT revenue by stream, Auto and IoT share, and actuals versus guidance" /></div>
     <div class="case__body">
-      <h2 class="case__title" id="case-title">NBA Player Load &amp; Injury-Risk Platform</h2>
-      <ul class="case__tags"><li>Python</li><li>SQL / DuckDB</li><li>scikit-learn</li><li>Dagster</li><li>Streamlit</li></ul>
-      <dl class="case__stats"><div><dt>Player-game records</dt><dd>105K+</dd></div><div><dt>Precision-recall lift</dt><dd>2.6×</dd></div><div><dt>ROC-AUC</dt><dd>0.70</dd></div></dl>
-      <div class="case__steps"><div><h4>The question</h4><p>Which players are carrying a risky workload right now, and who is most likely to miss time next?</p></div><div><h4>What I did</h4><p>Built a bronze-silver-gold warehouse in DuckDB covering 30 teams over 4 seasons, engineered an acute:chronic workload ratio, and trained a gradient-boosting model to score near-term absence risk. Dagster orchestrates the pipeline.</p></div><div><h4>The result</h4><p>A live Streamlit dashboard with a ranked risk board. The model finds at-risk players at about 2.6× the base rate.</p></div></div>
-      <div class="case__links"><a class="btn btn--wine" href="https://calvin-nba-load.streamlit.app/" target="_blank" rel="noopener">Open live dashboard<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn btn--line" href="https://github.com/qalveen/nba-load-intel" target="_blank" rel="noopener">View code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+      <h2 class="case__title" id="case-title">Qualcomm Revenue Forecast &amp; Earnings Variance Analysis</h2>
+      <ul class="case__tags"><li>Excel</li><li>Tableau</li><li>Forecasting</li><li>Financial analysis</li><li>Public filings</li></ul>
+      <dl class="case__stats"><div><dt>Auto + IoT share, FY24 → FY27E</dt><dd>25% → 42%</dd></div><div><dt>Quarters above top of guidance</dt><dd>3 of 10</dd></div><div><dt>FY26 Q4 QCT forecast</dt><dd>$8.74B</dd></div></dl>
+      <div class="case__steps"><div><h4>The question</h4><p>Is Qualcomm really shifting from phones to cars and AI, and how reliably does it hit its own revenue guidance?</p></div><div><h4>What I did</h4><p>Pulled quarterly results from Qualcomm's FY24–FY26 earnings releases, modeled QCT revenue by stream (handsets, automotive, IoT) in Excel, forecast FY26 Q4 through FY27, and compared every quarter with the guidance range and midpoint in an interactive Tableau dashboard.</p></div><div><h4>The result</h4><p>Automotive and IoT grow from 25% to a forecast 42% of QCT revenue by FY27. QCT beat the top of guidance in 3 of 10 quarters, and the FY26 Q4 forecast of $8.74B sits inside guidance of $8.4–9.0B.</p></div></div>
+      <div class="case__links"><a class="btn btn--wine" href="https://public.tableau.com/app/profile/calvin.magsie/viz/QualcommFinancialRevenueForecastandEarningsVarianceAnalysis/Dashboard" target="_blank" rel="noopener">Open Tableau dashboard<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn btn--line" href="https://github.com/qalveen/qualcomm-revenue-forecast/tree/main" target="_blank" rel="noopener">View on GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
     </div>
   </template>
   <template id="case-nvda">
@@ -347,6 +354,16 @@
       <dl class="case__stats"><div><dt>Records processed</dt><dd>29,000</dd></div><div><dt>Correlation</dt><dd>0.65</dd></div></dl>
       <div class="case__steps"><div><h4>The question</h4><p>As AI infrastructure scales, what happens to carbon output?</p></div><div><h4>What I did</h4><p>Built an ETL process over about 29,000 records, using the Claude API to help structure messy source data, then analyzed and visualized the relationship.</p></div><div><h4>The result</h4><p>A 0.65 correlation between AI infrastructure growth and emissions, presented in a notebook built for non-technical readers.</p></div></div>
       <div class="case__links"><a class="btn btn--wine" href="https://github.com/qalveen/AI-Growth-and-Carbon-Emissions/blob/main/AI_vs_Emissions.ipynb" target="_blank" rel="noopener">View notebook<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+    </div>
+  </template>
+  <template id="case-nba">
+    <div class="case__media"><img src="images/nba_project-thumb.jpg" alt="NBA Player Load Intelligence dashboard with a predicted risk board" /></div>
+    <div class="case__body">
+      <h2 class="case__title" id="case-title">NBA Player Load &amp; Injury-Risk Platform</h2>
+      <ul class="case__tags"><li>Python</li><li>SQL / DuckDB</li><li>scikit-learn</li><li>Dagster</li><li>Streamlit</li></ul>
+      <dl class="case__stats"><div><dt>Player-game records</dt><dd>105K+</dd></div><div><dt>Precision-recall lift</dt><dd>2.6×</dd></div><div><dt>ROC-AUC</dt><dd>0.70</dd></div></dl>
+      <div class="case__steps"><div><h4>The question</h4><p>Which players are carrying a risky workload right now, and who is most likely to miss time next?</p></div><div><h4>What I did</h4><p>Built a bronze-silver-gold warehouse in DuckDB covering 30 teams over 4 seasons, engineered an acute:chronic workload ratio, and trained a gradient-boosting model to score near-term absence risk. Dagster orchestrates the pipeline.</p></div><div><h4>The result</h4><p>A live Streamlit dashboard with a ranked risk board. The model finds at-risk players at about 2.6× the base rate.</p></div></div>
+      <div class="case__links"><a class="btn btn--wine" href="https://calvin-nba-load.streamlit.app/" target="_blank" rel="noopener">Open live dashboard<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn btn--line" href="https://github.com/qalveen/nba-load-intel" target="_blank" rel="noopener">View code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
     </div>
   </template>
   <template id="case-triton">
