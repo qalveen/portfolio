@@ -268,6 +268,7 @@
       ball2.vx = Math.sin(ang) * speed; ball2.vy = -Math.cos(ang) * speed;
       ball2.y = racket.y - ball2.r;
       rally++; rallyEl.textContent = rally; flash = 1;
+      if (window.__padelHit) window.__padelHit(Math.abs(off) < 0.34);
       if (rally % 5 === 0) racket.w = Math.max(70, racket.w - 6);  // a little harder every 5 hits
     }
     if (flash > 0) flash = Math.max(0, flash - .08 * dt);
@@ -286,6 +287,7 @@
     playing = false; cancelAnimationFrame(raf);
     var isBest = rally > best;
     if (isBest) { best = rally; bestEl.textContent = best; store("padelBest", best); }
+    if (window.__padelEnd) window.__padelEnd(rally);
     var msgs = rally === 0 ? "Even the pros miss the serve sometimes." :
                rally < 5 ? "Warm-up rally. Go again." :
                rally < 12 ? "Solid hands. Club level." :
@@ -343,4 +345,76 @@
     card.classList.remove("is-tilting");
     card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg");
   });
+})();
+
+/* Padel stats: KPIs + bar chart of recent rallies (saved per visitor) */
+(function () {
+  var box = document.getElementById("gstats");
+  if (!box) return;
+  var KEY = "padelStats", MAXN = 12;
+  var S = { games: [], hits: 0, sweet: 0 };
+  try { var raw = JSON.parse(localStorage.getItem(KEY) || "null"); if (raw && raw.games) S = raw; } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+  var $ = function (id) { return document.getElementById(id); };
+  var chart = $("gChart"), empty = $("gEmpty"), reset = $("gReset");
+  var tip = document.createElement("div"); tip.className = "gstats__tip"; tip.hidden = true; chart.appendChild(tip);
+  var NS = "http://www.w3.org/2000/svg";
+  function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+
+  function render() {
+    var n = S.games.length, total = S.games.reduce(function (a, b) { return a + b; }, 0);
+    $("gPlayed").textContent = n;
+    $("gAvg").textContent = n ? (total / n).toFixed(1) : "–";
+    $("gHits").textContent = S.hits;
+    $("gSweet").textContent = S.hits ? Math.round(S.sweet / S.hits * 100) + "%" : "–";
+    reset.hidden = !n; empty.hidden = !!n;
+    var old = chart.querySelector("svg"); if (old) old.remove();
+    if (!n) return;
+
+    var recent = S.games.slice(-MAXN), first = n - recent.length + 1;
+    var Wd = 560, Ht = 150, padL = 26, padR = 50, padT = 18, padB = 22;
+    var max = Math.max(5, Math.max.apply(null, recent)); max = Math.ceil(max / 5) * 5;
+    var plotW = Wd - padL - padR, plotH = Ht - padT - padB;
+    var slot = plotW / MAXN, bw = Math.min(28, slot - 2);
+    var y = function (v) { return padT + plotH - v / max * plotH; };
+    var svg = el("svg", { viewBox: "0 0 " + Wd + " " + Ht, role: "img",
+      "aria-label": "Bar chart of your last " + recent.length + " rallies. Best " + Math.max.apply(null, recent) + ", average " + (total / n).toFixed(1) + "." });
+    // recessive grid + y labels
+    [0, max / 2, max].forEach(function (v) {
+      svg.appendChild(el("line", { x1: padL, x2: Wd - padR, y1: y(v), y2: y(v), class: "g-grid" }));
+      var t = el("text", { x: padL - 6, y: y(v) + 4, class: "g-axis", "text-anchor": "end" }); t.textContent = v; svg.appendChild(t);
+    });
+    var bestV = Math.max.apply(null, recent), bestI = recent.lastIndexOf(bestV);
+    recent.forEach(function (v, i) {
+      var x = padL + i * slot + (slot - bw) / 2, top = y(v), base = y(0), h = base - top, r = Math.min(4, h);
+      var d = h <= 0 ? "" : "M" + x + "," + base + "V" + (top + r) + "q0,-" + r + " " + r + ",-" + r + "H" + (x + bw - r) + "q" + r + ",0 " + r + "," + r + "V" + base + "Z";
+      if (d) svg.appendChild(el("path", { d: d, class: "g-bar" + (i === recent.length - 1 ? " is-last" : "") }));
+      else svg.appendChild(el("line", { x1: x, x2: x + bw, y1: base - 1, y2: base - 1, class: "g-zero" }));
+      var hit = el("rect", { x: padL + i * slot, y: padT, width: slot, height: plotH, class: "g-hit", tabindex: 0,
+        "aria-label": "Rally " + (first + i) + ": " + v + " hits" });
+      var show = function () {
+        tip.textContent = "Rally #" + (first + i) + " · " + v + (v === 1 ? " hit" : " hits");
+        tip.hidden = false;
+        var pr = chart.getBoundingClientRect(), sr = svg.getBoundingClientRect();
+        tip.style.left = ((x + bw / 2) / Wd * sr.width + (sr.left - pr.left)) + "px";
+        tip.style.top = (top / Ht * sr.height + (sr.top - pr.top) - 8) + "px";
+      };
+      hit.addEventListener("pointerenter", show); hit.addEventListener("focus", show);
+      hit.addEventListener("pointerleave", function () { tip.hidden = true; }); hit.addEventListener("blur", function () { tip.hidden = true; });
+      svg.appendChild(hit);
+      if (i === bestI && v > 0) {
+        var bl = el("text", { x: x + bw / 2, y: top - 5, class: "g-label", "text-anchor": "middle" }); bl.textContent = "Best " + v; svg.appendChild(bl);
+      }
+      var xl = el("text", { x: x + bw / 2, y: Ht - 6, class: "g-axis", "text-anchor": "middle" }); xl.textContent = first + i; svg.appendChild(xl);
+    });
+    var avg = total / n;
+    svg.appendChild(el("line", { x1: padL, x2: Wd - padR + 2, y1: y(avg), y2: y(avg), class: "g-avg" }));
+    var al = el("text", { x: Wd - padR + 6, y: y(avg) + 4, class: "g-avglabel", "text-anchor": "start" }); al.textContent = "Avg " + avg.toFixed(1);
+    svg.appendChild(al);
+    chart.insertBefore(svg, tip);
+  }
+  window.__padelHit = function (center) { S.hits++; if (center) S.sweet++; };
+  window.__padelEnd = function (r) { S.games.push(r); if (S.games.length > 200) S.games.shift(); save(); render(); };
+  reset.addEventListener("click", function () { S = { games: [], hits: 0, sweet: 0 }; save(); render(); });
+  render();
 })();

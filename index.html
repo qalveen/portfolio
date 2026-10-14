@@ -250,6 +250,21 @@
                 <button class="btn" type="button" id="playBtn">Start rally</button>
               </div>
             </div>
+            <div class="gstats" id="gstats">
+              <div class="gstats__head">
+                <h4>Your rally stats</h4>
+                <button class="gstats__reset" type="button" id="gReset" hidden>Reset</button>
+              </div>
+              <dl class="gstats__kpis">
+                <div><dt>Rallies played</dt><dd id="gPlayed">0</dd></div>
+                <div><dt>Average rally</dt><dd id="gAvg">–</dd></div>
+                <div><dt>Total hits</dt><dd id="gHits">0</dd></div>
+                <div><dt>Sweet-spot hits</dt><dd id="gSweet">–</dd></div>
+              </dl>
+              <div class="gstats__chart" id="gChart">
+                <p class="gstats__empty" id="gEmpty">Play a rally and your results will chart here.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

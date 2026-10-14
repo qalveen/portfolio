@@ -569,3 +569,32 @@ html:has(dialog[open]) { overflow: hidden; }
 @media (hover: none) { .fut-hint .h-touch { display: inline; } .fut-hint .h-fine { display: none; } }
 
 @media (max-width: 600px) { .fut-wrap { max-width: 200px; } }
+
+/* Padel stats */
+.gstats { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.gstats__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.gstats__head h4 { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+.gstats__reset { font-size: .85rem; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.gstats__reset:hover { color: var(--wine); }
+.gstats__kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+.gstats__kpis div { background: var(--bg-2); border-radius: 12px; padding: 10px 12px; }
+.gstats__kpis dt { font-size: .78rem; color: var(--muted); line-height: 1.3; }
+.gstats__kpis dd { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.gstats__chart { position: relative; min-height: 72px; }
+.gstats__chart svg { width: 100%; height: auto; overflow: visible; }
+.gstats__empty { color: var(--muted); font-size: .9rem; padding: 22px 0; text-align: center; border: 1px dashed var(--line); border-radius: 12px; }
+.g-grid { stroke: var(--line); stroke-width: 1; }
+.g-axis { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.g-bar { fill: var(--wine-tint); }
+.g-bar.is-last { fill: var(--wine); }
+.g-zero { stroke: var(--wine-tint); stroke-width: 2; }
+.g-hit { fill: transparent; cursor: default; outline: none; }
+.g-hit:focus-visible { stroke: var(--wine); stroke-width: 1.5; }
+.g-label { fill: var(--ink); font-size: 11px; font-weight: 600; }
+.g-avg { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.g-avglabel { fill: var(--muted); font-size: 11px; font-weight: 500; }
+.gstats__tip {
+  position: absolute; transform: translate(-50%, -100%); pointer-events: none; white-space: nowrap;
+  background: var(--ink); color: var(--bg); font-size: .8rem; font-weight: 500; padding: 5px 9px; border-radius: 8px;
+}
+@media (max-width: 520px) { .gstats__kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
