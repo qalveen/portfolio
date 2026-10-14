@@ -410,3 +410,28 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
   .rise { opacity: 1; transform: none; }
 }
 html:has(dialog[open]) { overflow: hidden; }
+
+/* Hobby photos */
+.hobby__photo { margin: 0 0 22px 62px; }
+.hobby__frame { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--wine-soft); }
+.hobby__frame img { width: 100%; height: auto; display: block; }
+.hobby__photo figcaption { color: var(--muted); font-size: .88rem; margin-top: 10px; max-width: 52ch; }
+.me-marker {
+  position: absolute; transform: translate(-50%, -100%);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  color: #fff; pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.45));
+}
+.me-marker__label {
+  background: var(--wine); color: #fff; font-size: .78rem; font-weight: 600; white-space: nowrap;
+  padding: 4px 10px; border-radius: 999px; letter-spacing: 0;
+}
+:root[data-theme="dark"] .me-marker__label { background: #7b1e34; }
+.me-marker svg { width: 26px; height: 26px; color: #fff; stroke: currentColor; }
+.hobby__btn[aria-expanded="true"] + .hobby__panel .me-marker { animation: bob 1.4s var(--ease) infinite; }
+@keyframes bob { 0%, 100% { transform: translate(-50%, -100%); } 50% { transform: translate(-50%, calc(-100% - 6px)); } }
+@media (max-width: 720px) {
+  .hobby__photo { margin-left: 0; }
+  .me-marker__label { font-size: .7rem; padding: 3px 8px; }
+  .me-marker svg { width: 20px; height: 20px; }
+}
