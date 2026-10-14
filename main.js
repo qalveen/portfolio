@@ -148,15 +148,21 @@
     });
   });
 
-  /* ---------- Contact ball follows the pointer a little ---------- */
-  var ball = $("#ball"), contact = $(".contact");
-  if (ball && !reduce && window.matchMedia("(pointer: fine)").matches) {
-    contact.addEventListener("pointermove", function (e) {
-      var r = contact.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      ball.style.transform = "translate(" + (x * 40) + "px," + (y * 30) + "px) rotate(" + (x * 90) + "deg)";
-    });
-    contact.addEventListener("pointerleave", function () { ball.style.transform = ""; });
+  /* ---------- Contact: hover or tap the ball to score ---------- */
+  var pitch = $("#pitch"), kickBall = $("#kickBall");
+  if (pitch && kickBall) {
+    var busy = false;
+    var shoot = function () {
+      if (busy) return; busy = true;
+      pitch.classList.remove("is-reset"); void pitch.offsetWidth;
+      pitch.classList.add("is-scored");
+      setTimeout(function () {
+        pitch.classList.remove("is-scored"); pitch.classList.add("is-reset");
+        setTimeout(function () { busy = false; }, 450);
+      }, reduce ? 1200 : 2100);
+    };
+    if (window.matchMedia("(hover: hover)").matches) kickBall.addEventListener("pointerenter", shoot);
+    kickBall.addEventListener("click", shoot);
   }
 
   /* =========================================================
